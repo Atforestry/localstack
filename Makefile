@@ -11,5 +11,7 @@ logs:
 pull:
 	cd ../fetch-data && git pull && \
 	cd ../batch-run && git pull && \
+	cd ../model-predict && git pull && \
+	cd ../user-query && git pull && \
 	cd ../infrastructure && git pull
 	

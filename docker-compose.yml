@@ -15,7 +15,25 @@ services:
     build: ../batch-run
     image: "atforestry/batch-run"
     ports:
-      - "9000:8000" 
+      - "8010:8000" 
+    volumes:
+      - ../batch-run/src:/usr/src/app/src       
+    env_file:
+      - ./.env
+  model-predict:
+    build: ../model-predict
+    image: "atforestry/model-predict"
+    ports:
+      - "8020:8000" 
+    volumes:
+      - ../batch-run/src:/usr/src/app/src       
+    env_file:
+      - ./.env
+  user-query:
+    build: ../user-query
+    image: "atforestry/user-query"
+    ports:
+      - "80:8000" 
     volumes:
       - ../batch-run/src:/usr/src/app/src       
     env_file:
