@@ -3,7 +3,7 @@ start:
 	docker-compose logs -f --tail=40
 
 stop:
-	docker-compose down
+	docker-compose down --volumes
 
 logs:
 	docker-compose logs -f service
