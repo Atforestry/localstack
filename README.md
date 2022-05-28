@@ -1,6 +1,6 @@
 # Localstack
 
-This is the repository to start the whole stack locally.
+This is the repository to start the whole stack locally. You need to have all the repositories cloned in the parent directory.
 
 Start the stack:
 > make start
