@@ -6,6 +6,9 @@ You should have all the repositories cloned under the same directory. Then enter
 
 Make sure that you have updated all the repositories before running this repository.
 
+IMPORTANT NOTICE!
+- To access other services, please use the corresponding environment variable at the .env file.
+
 Start the stack:
 > make start
 
