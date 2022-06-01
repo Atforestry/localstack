@@ -41,7 +41,7 @@ services:
       dockerfile: ../user-query/Dockerfile
     image: "atforestry/user-query"
     ports:
-      - "80:8080" 
+      - "8080:8000" 
     volumes:
       - ../user-query/app/src:/usr/src/app/src
     env_file:
