@@ -46,6 +46,8 @@ services:
       - ../api/src:/usr/src/app/src       
     env_file:
       - ../api/.env
+    depends_on:
+      - db      
   user-query:
     build: 
       context: ../user-query/
