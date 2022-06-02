@@ -35,6 +35,17 @@ services:
       - ../model-predict/src:/usr/src/app/src       
     env_file:
       - ../model-predict/.env
+  api:
+    build: 
+      context: ../api
+      dockerfile: ../api/Dockerfile
+    image: "atforestry/api"
+    ports:
+      - "8030:8000" 
+    volumes:
+      - ../api/src:/usr/src/app/src       
+    env_file:
+      - ../api/.env
   user-query:
     build: 
       context: ../user-query/
