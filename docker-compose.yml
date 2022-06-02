@@ -12,7 +12,8 @@ services:
     env_file:
       - ../fetch-data/.env
     depends_on:
-      - db
+      db:
+        condition: service_healthy   
   batch-run:
     build: 
       context: ../batch-run
@@ -47,7 +48,8 @@ services:
     env_file:
       - ../api/.env
     depends_on:
-      - db      
+      db:
+        condition: service_healthy   
   user-query:
     build: 
       context: ../user-query/
@@ -69,6 +71,11 @@ services:
     volumes: 
       - db:/var/lib/postgresql/data
       - ../infrastructure/db/schema.sql:/docker-entrypoint-initdb.d/create_tables.sql     
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 volumes:
   db:
     driver: local
