@@ -8,7 +8,7 @@ services:
     ports:
       - "8000:8000" 
     volumes:
-      - ../fetch-data/src:/usr/src/app/src
+      - ../fetch-data/src:/app/src
     env_file:
       - ../fetch-data/.env
     depends_on:
@@ -33,23 +33,23 @@ services:
     ports:
       - "8020:8000" 
     volumes:
-      - ../model-predict/src:/usr/src/app/src       
+      - ../model-predict/src:/app/src       
     env_file:
       - ../model-predict/.env
-  api:
-    build: 
-      context: ../api
-      dockerfile: ../api/Dockerfile
-    image: "atforestry/api"
-    ports:
-      - "8030:8000" 
-    volumes:
-      - ../api/src:/usr/src/app/src       
-    env_file:
-      - ../api/.env
-    depends_on:
-      db:
-        condition: service_healthy   
+  # api:
+  #   build: 
+  #     context: ../api
+  #     dockerfile: ../api/Dockerfile
+  #   image: "atforestry/api"
+  #   ports:
+  #     - "8030:8000" 
+  #   volumes:
+  #     - ../api/src:/usr/src/app/src       
+  #   env_file:
+  #     - ../api/.env
+  #   depends_on:
+  #     db:
+  #       condition: service_healthy   
   user-query:
     build: 
       context: ../user-query/
