@@ -8,12 +8,17 @@ services:
     ports:
       - "8000:8000" 
     volumes:
-      - ../fetch-data/src:/usr/src/app/src
+      - ../fetch-data/src:/app/src
     env_file:
       - ../fetch-data/.env
     depends_on:
       db:
-        condition: service_healthy   
+        condition: service_healthy 
+    healthcheck:
+      test: ["CMD", "wget", "http://localhost:8000/healthcheck"]
+      interval: 10s
+      timeout: 10s
+      retries: 5          
   batch-run:
     build: 
       context: ../batch-run
@@ -25,6 +30,9 @@ services:
       - ../batch-run/src:/usr/src/app/src       
     env_file:
       - ../batch-run/.env
+    depends_on:
+      fetch-data:
+        condition: service_healthy       
   model-predict:
     build: 
       context: ../model-predict
@@ -73,7 +81,7 @@ services:
       - ../infrastructure/db/schema.sql:/docker-entrypoint-initdb.d/create_tables.sql     
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
+      interval: 5s
       timeout: 5s
       retries: 5
 volumes:
