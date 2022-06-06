@@ -11,6 +11,7 @@ services:
       - ../fetch-data/src:/app/src
     env_file:
       - ../fetch-data/.env
+      - ../fetch-data/.env_key
     depends_on:
       db:
         condition: service_healthy 
