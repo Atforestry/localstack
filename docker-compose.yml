@@ -72,12 +72,14 @@ services:
   user-query:
     build: 
       context: ../user-query/
-      dockerfile: ../user-query/Dockerfile
+      dockerfile: ../user-query/Dockerfile.local
     image: "atforestry/user-query"
     ports:
       - "8080:8000" 
     volumes:
       - ../user-query/app/src:/usr/src/app/src
+    env_file:
+      - ../user-query/.env
 volumes:
   db:
     driver: local
