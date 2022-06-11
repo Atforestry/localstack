@@ -6,7 +6,7 @@ stop:
 	docker-compose down --volume
 
 logs:
-	docker-compose logs -f service
+	docker-compose logs -f --tail=40
 
 pull:
 	git pull && \

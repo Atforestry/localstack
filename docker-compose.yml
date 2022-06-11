@@ -56,7 +56,7 @@ services:
     ports:
       - "8020:8000" 
     volumes:
-      - ../model-predict/src:/usr/src/app/src       
+      - ../model-predict/src:/app/src       
   api:
     build: 
       context: ../api
